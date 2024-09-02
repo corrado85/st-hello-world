@@ -1,5 +1,5 @@
 # st-hello-world
-matplotlib
+matplotlib.pyplot
 streamlit
 matplotlib
 pandas
