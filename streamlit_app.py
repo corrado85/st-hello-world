@@ -1,21 +1,13 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
-st.title('Report Interattivo con Streamlit')
+# Titolo dell'applicazione
+st.title("Calcolo del Quadrato di un Numero")
 
-# Controlli utente
-valore = st.sidebar.slider('Seleziona un valore', 0, 100, 50)
-opzione = st.sidebar.selectbox('Seleziona una colonna', ['colonna1', 'colonna2', 'colonna3'])
+# Input dell'utente: numero intero
+numero = st.number_input("Inserisci un numero", value=0)
 
-# Calcoli
-risultato = valore * 2
-st.write(f'Il doppio di {valore} è {risultato}')
+# Calcolo del quadrato del numero
+quadrato = numero ** 2
 
-# Grafico interattivo
-fig, ax = plt.subplots()
-x = np.linspace(0, 10, 100)
-y = np.sin(x) * valore
-ax.plot(x, y)
-st.pyplot(fig)
+# Visualizzazione del risultato
+st.write(f"Il quadrato di {numero} è {quadrato}")
