@@ -35,3 +35,37 @@ st.write(f"Il prezzo di oggi di bitcoing è {round(df.iloc[-1,0])}")
 
 
 
+# Impostazioni iniziali
+start_date = "2020-01-01"  # Data di inizio
+end_date = date.today().strftime('%Y-%m-%d')  # Data di fine: oggi
+interval = "1mo"  # Intervallo mensile
+
+# Scarica i dati da Yahoo Finance
+df = yf.download(tickers=symbol, start=start_date, end=end_date, interval=interval)['Adj Close']
+
+# Converti i dati al formato periodico mensile
+df = df.to_period('M')
+
+# Crea il grafico
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(
+    x=df.index.astype(str),  # Converte l'indice (periodo mensile) in stringa per renderlo compatibile con Plotly
+    y=df.values,
+    mode='lines+markers',
+    name=symbol
+))
+
+# Personalizza il grafico
+fig.update_layout(
+    title=f"Prezzi mensili di {symbol}",
+    xaxis_title="Data",
+    yaxis_title="Prezzo di Chiusura (USD)",
+    template="plotly_dark"  # Cambia lo stile se vuoi (es: plotly_white, plotly_dark)
+)
+
+# Visualizza il grafico su Streamlit
+st.title("Grafico Temporale dei Prezzi")
+st.plotly_chart(fig)
+
+
