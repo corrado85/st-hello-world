@@ -18,7 +18,6 @@ st.write(f"Il quadrato di {numero} è {quadrato}")
 import yfinance as yf
 from datetime import date, timedelta
 import streamlit as st
-import plotly.graph_objects as go
 
 
 # Simbolo del ticker
@@ -43,31 +42,13 @@ end_date = date.today().strftime('%Y-%m-%d')  # Data di fine: oggi
 interval = "1mo"  # Intervallo mensile
 
 # Scarica i dati da Yahoo Finance
-df = yf.download(tickers=symbol, start=start_date, end=end_date, interval=interval)['Adj Close']
+df = yf.download(tickers=symbol, start=start_date, end=end_date, interval=interval)['Adj Close'].to_period('M')
 
-# Converti i dati al formato periodico mensile
-df = df.to_period('M')
 
-# Crea il grafico
-fig = go.Figure()
-
-fig.add_trace(go.Scatter(
-    x=df.index.astype(str),  # Converte l'indice (periodo mensile) in stringa per renderlo compatibile con Plotly
-    y=df.values,
-    mode='lines+markers',
-    name=symbol
-))
-
-# Personalizza il grafico
-fig.update_layout(
-    title=f"Prezzi mensili di {symbol}",
-    xaxis_title="Data",
-    yaxis_title="Prezzo di Chiusura (USD)",
-    template="plotly_dark"  # Cambia lo stile se vuoi (es: plotly_white, plotly_dark)
-)
 
 # Visualizza il grafico su Streamlit
-st.title("Grafico Temporale dei Prezzi")
-st.plotly_chart(fig)
+st.title(f"Grafico Temporale dei Prezzi di {symbol}")
+st.line_chart(df)
+
 
 
