@@ -46,9 +46,20 @@ df = yf.download(tickers=symbol, start=start_date, end=end_date, interval=interv
 
 
 
+
+# Converti il DataFrame in una forma adatta per il grafico
+df_reset = df.reset_index()  # Ripristina l'indice temporale in una colonna normale
+
+# Usa la colonna 'Date' per l'asse X e 'Adj Close' per l'asse Y
+st.line_chart(df_reset[['Date', 'Adj Close']].set_index('Date'))
+
+
+
+
+
 # Visualizza il grafico su Streamlit
 st.title(f"Grafico Temporale dei Prezzi di {symbol}")
-st.line_chart(df, x = df.index)
+st.line_chart(df)
 
 
 
