@@ -13,13 +13,25 @@ quadrato = numero ** 2
 st.write(f"Il quadrato di {numero} è {quadrato}")
 
 
-from yfinance import yfinance as yf 
+
+
+import yfinance as yf
 from datetime import date, timedelta
+import streamlit as st
 
-symbol = ["BTC-USD"]
+# Simbolo del ticker
+symbol = "BTC-USD"
 
+# Data odierna
 today = date.today()
+
+# Scarica i dati
 df = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Adj Close']
 
+# Mostra il risultato su Streamlit
+if not df.empty:
+    st.write(f"Il prezzo di Bitcoin oggi è: {df.iloc[-1]:.2f} USD")
+else:
+    st.write("Nessun dato disponibile per oggi. Potrebbe essere un giorno festivo o il mercato è chiuso.")
 
-st.write(f"\n\nIl prezzo di bitcoin oggi è{df}")
+
