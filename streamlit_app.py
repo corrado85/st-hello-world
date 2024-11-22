@@ -16,6 +16,8 @@ st.write(f"Il quadrato di {numero} è {quadrato}")
 import yfinance as yf
 from datetime import date, timedelta
 
+symbol = ["BTC-USD"]
+
 today = date.today()
 df = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Adj Close']
 
