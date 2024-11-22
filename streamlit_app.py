@@ -32,7 +32,7 @@ df_today = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1
 
 
 # Mostra il prezzo odierno di Bitcoin
-st.write(f"Il prezzo di oggi di Bitcoin è {df.iloc[-1,0]}")
+st.write(f"Il prezzo di oggi di Bitcoin è {df_today .iloc[-1,0]}")
 
 
 
