@@ -30,18 +30,19 @@ today = date.today()
 df_today = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Adj Close']
 
 # Mostra il prezzo odierno di Bitcoin
-st.write(f"Il prezzo di oggi di Bitcoin è {round(df_today.iloc[-1])}")
+st.write(f"Il prezzo di oggi di Bitcoin è {round(df_today.iloc[-1,0])}")
 
 # Impostazioni iniziali per il grafico temporale
 start_date = "2020-01-01"  # Data di inizio
 
 end_date = date.today().strftime('%Y-%m-%d')  # Data di fine: oggi
 
-
 # Scarica i dati storici da Yahoo Finance
-df_historical = yf.download(tickers=symbol, start=start_date, end=end_date, interval="1mo")['Adj Close']
+df_historical = yf.download(tickers=symbol, start=start_date, end=end_date, interval=interval)['Adj Close']
 
+# Converti l'indice in una colonna "Date" (necessario per Streamlit)
+df_historical_reset = df_historical.reset_index()
 
 # Visualizza il grafico su Streamlit con il titolo
 st.title(f"Grafico Temporale dei Prezzi di {symbol}")
-st.line_chart(df_historical)
+st.line_chart(df_historical_reset.set_index('Date')['Adj Close'])
