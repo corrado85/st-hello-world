@@ -33,8 +33,8 @@ df_today = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1
 
 # Mostra il prezzo odierno di Bitcoin
 #st.write("Il prezzo di oggi di Bitcoin è: ", round(df_today.iloc[-1,0]) )
-st.write(f"Il prezzo di oggi di Bitcoin è: {round(df_today['Adj Close'].iloc[-1], 2)}")
-
+#st.write(f"Il prezzo di oggi di Bitcoin è: {round(df_today['Adj Close'].iloc[-1], 2)}")
+print("Il prezzo di bitcoin oggi è: ", round(df_today.iloc[-1,0]))
 
 
 # Scarica i dati storici da Yahoo Finance
