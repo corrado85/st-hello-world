@@ -52,3 +52,20 @@ st.line_chart(df)
 
 
 
+
+
+# Aggiungi il cursore interattivo
+selected_date = st.selectbox(
+    "Seleziona un mese:",
+    df.index.astype(str)  # Converte l'indice in stringa per selezionare la data
+)
+
+# Visualizza il valore per la data selezionata
+selected_value = df.loc[selected_date]
+st.write(f"Il prezzo di {symbol} per il mese {selected_date} è: {selected_value:.2f} USD")
+
+
+
+
+
+
