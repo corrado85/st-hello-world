@@ -48,7 +48,7 @@ df = yf.download(tickers=symbol, start=start_date, end=end_date, interval=interv
 
 # Visualizza il grafico su Streamlit
 st.title(f"Grafico Temporale dei Prezzi di {symbol}")
-st.line_chart(df)
+st.line_chart(df, x_label=df.index())
 
 
 
