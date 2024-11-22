@@ -18,7 +18,6 @@ st.write(f"Il quadrato di {numero} è {quadrato}")
 
 import yfinance as yf
 from datetime import date, timedelta
-import streamlit as st
 
 # Parametri
 symbol = "BTC-USD"
