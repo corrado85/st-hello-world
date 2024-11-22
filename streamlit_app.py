@@ -13,7 +13,7 @@ quadrato = numero ** 2
 st.write(f"Il quadrato di {numero} è {quadrato}")
 
 
-import yfinance as yf
+from yfinance import yfinance as yf 
 from datetime import date, timedelta
 
 symbol = ["BTC-USD"]
