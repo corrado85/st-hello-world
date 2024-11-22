@@ -29,9 +29,9 @@ today = date.today()
 df = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Adj Close']
 
 # Mostra il risultato su Streamlit
-if not df.empty:
-    st.write(f"Il prezzo di Bitcoin oggi è: {df.iloc[-1]:.2f} USD")
-else:
-    st.write("Nessun dato disponibile per oggi. Potrebbe essere un giorno festivo o il mercato è chiuso.")
+st.write(f"Il prezzo di oggi di bitcoing è {round(df.iloc[-1,0])}")
+
+
+
 
 
