@@ -32,7 +32,7 @@ df = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Ad
 
 
 # Mostra il prezzo odierno di Bitcoin
-st.write(f"Il prezzo di oggi di Bitcoin è {round(df.iloc[-1,0])}")
+st.write(f"Il prezzo di oggi di Bitcoin è {round(df.iloc[-1], 2)}")
 
 
 
