@@ -28,11 +28,11 @@ start_date = "2020-01-01"  # Data di inizio
 
 
 # Scarica i dati per il prezzo odierno
-df_today = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Adj Close']
+df = yf.download(tickers=symbol, start=today, end=today + timedelta(days=1))['Adj Close']
 
 
 # Mostra il prezzo odierno di Bitcoin
-st.write(f"Il prezzo di oggi di Bitcoin è {round(df_today.iloc[-1])}")
+st.write(f"Il prezzo di oggi di Bitcoin è {round(df.iloc[-1,0])}")
 
 
 
